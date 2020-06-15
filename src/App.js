@@ -13,7 +13,19 @@ function App() {
     }, [])
 
     async function handleAddRepository() {
-        // TODO
+        const response = await api.post('repositories', {
+            "title": `reactjs-concepts ${Date.now()}`,
+            "url": "https://github.com/kelvin-fernandes/reactjs-concepts",
+            "techs": [
+                "Javascript",
+                "CSS",
+                "HTML"
+            ]
+        });
+
+        const repository = response.data;
+
+        setRepositories([...repositories, repository]);
     }
 
     async function handleRemoveRepository(id) {
